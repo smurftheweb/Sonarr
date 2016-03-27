@@ -27,12 +27,7 @@ var AppLayout = Marionette.LayoutView.extend({
       footerRegion: FooterRegion
     });
 
-    // this.$('#footer-region').on('DOMSubtreeModified', _.debounce(this.onFooterResize, 200));
-
-    // this.listenTo(this.footerRegion, 'show', this.onFooterResize);
-
     this.listenTo(vent, vent.Commands.OpenFooter, (view) => {
-      // this.listenTo(footer, 'DOMSubtreeModified', this.onFooterResize);
       this._showInRegion(this.footerRegion, view);
     });
   },
@@ -42,14 +37,10 @@ var AppLayout = Marionette.LayoutView.extend({
 
     // bind the region to main region
     if (region === this.footerRegion || region === this.actionBarRegion) {
-      this.listenToOnce(this.mainRegion, 'destroy', () => {
-        region.destroy();
+      this.listenToOnce(this.mainRegion, 'empty', () => {
+        region.empty();
       });
     }
-  },
-
-  onFooterResize() {
-    console.log('a');
   }
 });
 

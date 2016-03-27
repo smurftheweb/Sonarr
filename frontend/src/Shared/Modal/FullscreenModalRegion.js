@@ -3,16 +3,16 @@ var $ = require('jquery');
 var Marionette = require('marionette');
 
 const EscKeyCode = 27;
+const $window = $(window);
 
 const FullScreenModalRegion = Marionette.Region.extend({
   el: '#fullscreen-modal-region',
 
   initialize() {
-    this.$window = $(window);
     _.bindAll(this, 'destroy', 'onKeypress', 'resizeBody');
     $(document).on('keyup', this.onKeypress);
     const debouncedResize = _.debounce(this.resizeBody, 200);
-    this.$window.resize(debouncedResize);
+    $window.resize(debouncedResize);
   },
 
   destroy() {
@@ -35,12 +35,12 @@ const FullScreenModalRegion = Marionette.Region.extend({
   },
 
   resizeBody() {
-    var view = this.currentView;
+    const view = this.currentView;
     if (!view || view.isDestroyed) {
       return;
     }
 
-    const windowHeight = this.$window.height();
+    const windowHeight = $window.height();
     const maxHeight = windowHeight - 190;
 
     this.$el.find('.fullscreen-modal-body').css('max-height', `${maxHeight}px`);
@@ -58,7 +58,7 @@ const FullScreenModalRegion = Marionette.Region.extend({
   },
 
   onKeypress(event) {
-    var view = this.currentView;
+    const view = this.currentView;
 
     if (!view || view.isDestroyed) {
       return;
@@ -70,7 +70,7 @@ const FullScreenModalRegion = Marionette.Region.extend({
       if ($target.is('select:focus')) {
         $target.blur();
       } else {
-        this.destroy();
+        this.empty();
       }
 
       event.stopImmediatePropagation();
@@ -79,7 +79,7 @@ const FullScreenModalRegion = Marionette.Region.extend({
   },
 
   onViewClose() {
-    this.destroy();
+    this.empty();
     this.stopListening(this.currentView);
   }
 });

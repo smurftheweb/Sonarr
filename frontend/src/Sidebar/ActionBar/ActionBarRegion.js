@@ -1,15 +1,17 @@
 var Marionette = require('marionette');
 var $ = require('jquery');
 
+const $body = $('body');
+
 var region = Marionette.Region.extend({
   el: '#actionbar-region',
 
   onShow() {
-    $('body').addClass('actionbar-visible');
+    $body.addClass('actionbar-visible');
   },
 
-  onDestroy() {
-    $('body').removeClass('actionbar-visible actionbar-extended');
+  onEmpty() {
+    $body.removeClass('actionbar-visible actionbar-extended');
   }
 });
 
