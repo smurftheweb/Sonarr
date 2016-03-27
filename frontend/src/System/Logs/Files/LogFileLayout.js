@@ -10,7 +10,7 @@ var ContentsModel = require('./ContentsModel');
 var LoadingView = require('Shared/LoadingView');
 require('jQuery/jquery.spin');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: 'System/Logs/Files/LogFileLayoutTemplate',
 
   regions: {
@@ -115,7 +115,7 @@ module.exports = Marionette.Layout.extend({
   },
 
   _refreshTable(buttonContext) {
-    this.contents.close();
+    this.contents.destroy();
     var promise = this.collection.fetch();
 
     // Would be nice to spin the icon on the refresh button

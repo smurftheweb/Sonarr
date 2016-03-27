@@ -20,7 +20,7 @@ require('Mixins/backbone.signalr.mixin');
 require('Mixins/backbone.signalr.mixin');
 require('jquery.lazyload');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: tpl,
 
   regions: {

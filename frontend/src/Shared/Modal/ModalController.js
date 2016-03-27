@@ -15,7 +15,7 @@ var FileBrowserLayout = require('../FileBrowser/FileBrowserLayout');
 module.exports = Marionette.AppRouter.extend({
   initialize() {
     vent.on(vent.Commands.OpenFullscreenModal, this._openFullscreenModal, this);
-    vent.on(vent.Commands.CloseFullscreenModal, this._closeFullscreenModal, this);
+    vent.on(vent.Commands.CloseFullscreenModal, this._destroyFullscreenModal, this);
 
     vent.on(vent.Commands.OpenModal, this._openModal, this);
 
@@ -34,8 +34,8 @@ module.exports = Marionette.AppRouter.extend({
     AppLayout.fullscreenModalRegion.show(view);
   },
 
-  _closeFullscreenModal() {
-    AppLayout.fullscreenModalRegion.close();
+  _destroyFullscreenModal() {
+    AppLayout.fullscreenModalRegion.destroy();
   },
 
   _openModal(view) {

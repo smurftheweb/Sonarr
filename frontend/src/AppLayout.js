@@ -6,7 +6,7 @@ var ModalRegion = require('Shared/Modal/ModalRegion');
 var FooterRegion = require('Layout/Footer/FooterRegion');
 var vent = require('vent');
 
-var AppLayout = Marionette.Layout.extend({
+var AppLayout = Marionette.LayoutView.extend({
   el: 'body',
 
   ui: {
@@ -42,8 +42,8 @@ var AppLayout = Marionette.Layout.extend({
 
     // bind the region to main region
     if (region === this.footerRegion || region === this.actionBarRegion) {
-      this.listenToOnce(this.mainRegion, 'close', () => {
-        region.close();
+      this.listenToOnce(this.mainRegion, 'destroy', () => {
+        region.destroy();
       });
     }
   },

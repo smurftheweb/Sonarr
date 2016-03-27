@@ -5,7 +5,7 @@ var reqres = require('reqres');
 var tpl = require('./ImportSeriesLayout.hbs');
 var rootFolderCollection = require('../RootFolders/RootFolderCollection');
 
-const ImportSeriesLayout = Marionette.Layout.extend({
+const ImportSeriesLayout = Marionette.LayoutView.extend({
   template: tpl,
 
   regions: {

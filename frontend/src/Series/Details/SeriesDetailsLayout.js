@@ -18,7 +18,7 @@ var tpl = require('./SeriesDetails.hbs');
 
 require('Mixins/backbone.signalr.mixin');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: tpl,
 
   regions: {
@@ -101,7 +101,7 @@ module.exports = Marionette.Layout.extend({
     });
   },
 
-  onClose() {
+  onDestroy() {
     reqres.removeHandler(reqres.Requests.GetEpisodeFileById);
   },
 
@@ -135,7 +135,7 @@ module.exports = Marionette.Layout.extend({
     this.seasons.show(new LoadingView());
 
     $.when(this.episodeCollection.fetch(), this.episodeFileCollection.fetch()).done(() => {
-      if (!this.isClosed) {
+      if (!this.isDestroyed) {
         this._updateSeasons();
       }
 

@@ -1,7 +1,7 @@
 var Marionette = require('marionette');
 var CalendarEventCollectionView = require('../Events/CalendarEventCollectionView');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: 'Calendar/Calendar/Day/CalendarDayView',
   className: 'calendar-day',
 

@@ -6,7 +6,7 @@ var ActionBarLayout = require('./ActionBarLayout');
 module.exports = Marionette.AppRouter.extend({
   initialize() {
     vent.on(vent.Commands.OpenActionBarCommand, this._openActionBar, this);
-    vent.on(vent.Commands.CloseActionBarCommand, this._closeActionBar, this);
+    vent.on(vent.Commands.CloseActionBarCommand, this._destroyActionBar, this);
   },
 
   _openActionBar(options) {
@@ -16,7 +16,7 @@ module.exports = Marionette.AppRouter.extend({
   },
 
 
-  _closeActionBar() {
-    AppLayout.actionBarRegion.close();
+  _destroyActionBar() {
+    AppLayout.actionBarRegion.destroy();
   }
 });

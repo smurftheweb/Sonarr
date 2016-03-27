@@ -15,7 +15,7 @@ require('Mixins/backbone.signalr.mixin');
 require('jquery.easypiechart');
 require('momentRange');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: 'Calendar/Calendar/CalendarView',
   storageKey: 'calendar.view',
 
@@ -159,7 +159,7 @@ module.exports = Marionette.Layout.extend({
     });
 
     if (this.view === 'agenda') {
-      this.headersRegion.close();
+      this.headersRegion.destroy();
 
       this.daysRegion.show(new CalendarAgendaCollectionView({
         collection: this.dayCollection

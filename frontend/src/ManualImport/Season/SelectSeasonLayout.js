@@ -1,6 +1,6 @@
 var Marionette = require('marionette');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: 'ManualImport/Season/SelectSeasonLayoutTemplate',
 
   events: {
@@ -21,6 +21,6 @@ module.exports = Marionette.Layout.extend({
     }
 
     this.trigger('manualimport:selected:season', { seasonNumber: seasonNumber });
-    this.close();
+    this.destroy();
   }
 });

@@ -9,7 +9,7 @@ var AgeCell = require('Release/AgeCell');
 var ProtocolCell = require('Release/ProtocolCell');
 var PeersCell = require('Release/PeersCell');
 
-module.exports = Marionette.Layout.extend({
+module.exports = Marionette.LayoutView.extend({
   template: 'Episode/Search/ManualLayoutTemplate',
 
   regions: {
@@ -74,7 +74,7 @@ module.exports = Marionette.Layout.extend({
   ],
 
   onShow() {
-    if (!this.isClosed) {
+    if (!this.isDestroyed) {
       this.grid.show(new Backgrid.Grid({
         row: Backgrid.Row,
         columns: this.columns,

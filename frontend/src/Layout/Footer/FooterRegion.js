@@ -18,7 +18,7 @@ var region = Marionette.Region.extend({
     this.listenTo(this.currentView, 'render', this._resizeContent);
   },
 
-  onClose() {
+  onDestroy() {
     this.contentWrapper.css('padding-bottom', 0);
   }
 });

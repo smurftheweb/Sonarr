@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var $ = require('jquery');
 var Marionette = require('marionette');
 var SettingsLayoutBase = require('../SettingsLayoutBase');
 var DownloadClientCollection = require('./DownloadClientCollection');
@@ -28,13 +29,13 @@ module.exports = SettingsLayoutBase.extend({
   },
 
   onRender() {
-    var promise = Marionette.$.when(this.model.fetch(),
+    var promise = $.when(this.model.fetch(),
       this.downloadClientsCollection.fetch(),
       this.remotePathMappingCollection.fetch()
     );
 
     promise.done(_.bind(function() {
-      if (this.isClosed) {
+      if (this.isDestroyed) {
         return;
       }
 

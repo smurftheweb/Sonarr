@@ -8,7 +8,7 @@ var tpl = require('./AddNewSeriesLayout.hbs');
 var ErrorView = require('./ErrorView');
 var EmptyView = require('./EmptyView');
 
-const AddNewSeriesLayout = Marionette.Layout.extend({
+const AddNewSeriesLayout = Marionette.LayoutView.extend({
   id: 'add-new-series',
 
   template: tpl,
@@ -42,7 +42,7 @@ const AddNewSeriesLayout = Marionette.Layout.extend({
   },
 
   search() {
-    if (this.closed) {
+    if (this.isDestroyed) {
       return;
     }
 
@@ -57,7 +57,7 @@ const AddNewSeriesLayout = Marionette.Layout.extend({
     this.search();
   },
 
-  onClose() {
+  onDestroy() {
     this.collection.abort();
   },
 
@@ -80,7 +80,7 @@ const AddNewSeriesLayout = Marionette.Layout.extend({
   },
 
   onCollectionSync() {
-    if (this.isClosed) {
+    if (this.isDestroyed) {
       return;
     }
 
@@ -99,11 +99,11 @@ const AddNewSeriesLayout = Marionette.Layout.extend({
   onCollectionRequest(collection, xhr) {
     this.$el.addClass('state-loading');
     xhr.error(() => {
-      if (this.isClosed) {
+      if (this.isDestroyed) {
         return;
       }
       if (status === 'abort') {
-        this.searchResult.close();
+        this.searchResult.destroy();
       } else {
         this.searchResult.show(new ErrorView({
           term: this.collection.term,
