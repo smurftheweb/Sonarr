@@ -21,7 +21,7 @@ const ImportSeriesLayout = Marionette.LayoutView.extend({
   },
 
   onStart() {
-    var promise = reqres.request(reqres.SelectPath);
+    const promise = reqres.request(reqres.SelectPath);
     promise.done(this.onPathSelected);
   },
 
@@ -30,13 +30,13 @@ const ImportSeriesLayout = Marionette.LayoutView.extend({
     console.log('Import series path selected', path);
 
     const folderPromise = $.Deferred();
-    rootFolderCollection.fetch().
-      done(() => {
+    rootFolderCollection.fetch()
+      .done(() => {
         const rootFolder = rootFolderCollection.findWhere({ path });
         if (rootFolder) {
           folderPromise.resolve(rootFolder);
         } else {
-          rootFolderCollection.create({ path: path },
+          rootFolderCollection.create({ path },
             {
               wait: true,
               success: folderPromise.resolve
