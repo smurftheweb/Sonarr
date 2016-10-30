@@ -129,6 +129,18 @@ module.exports = Marionette.Layout.extend({
             this._renderView();
         });
 
+        this.tagOptions = {
+            type: 'sorting',
+            title: 'Tags',
+            name: 'tags',
+            storeState: false,
+            viewCollection: this.seriesCollection,
+            items : [ 
+                    { title: 'Anime', name: 'anime' },
+                    { title: 'TV', name: 'tv'}
+                ]
+        };
+
         this.sortingOptions = {
             type           : 'sorting',
             storeState     : false,
@@ -200,6 +212,13 @@ module.exports = Marionette.Layout.extend({
                     title    : '',
                     tooltip  : 'Missing',
                     icon     : 'icon-sonarr-missing',
+                    callback : this._setFilter
+                },
+                {
+                    key      : 'anime',
+                    title    : '',
+                    tooltip  : 'Anime',
+                    icon     : 'icon-sonarr-tba',
                     callback : this._setFilter
                 }
             ]
@@ -305,6 +324,7 @@ module.exports = Marionette.Layout.extend({
 
         this.toolbar.show(new ToolbarLayout({
             right   : [
+                this.tagOptions, 
                 this.sortingOptions,
                 this.viewButtons
             ],

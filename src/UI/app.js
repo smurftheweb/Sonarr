@@ -9,6 +9,7 @@ require.config({
         'handlebars.helpers'      : 'JsLibraries/handlebars.helpers',
         'bootstrap'               : 'JsLibraries/bootstrap',
         'bootstrap.tagsinput'     : 'JsLibraries/bootstrap.tagsinput',
+        'bootstrap.multiselect'   : 'JsLibraries/bootstrap.multiselect',
         'backbone.deepmodel'      : 'JsLibraries/backbone.deep.model',
         'backbone.pageable'       : 'JsLibraries/backbone.pageable',
         'backbone.validation'     : 'JsLibraries/backbone.validation',
@@ -59,6 +60,12 @@ require.config({
             deps : [
                 'bootstrap',
                 'typeahead'
+            ]
+        },
+        'bootstrap.multiselect'   : {
+            deps: [
+                'bootstrap',
+                'jquery'
             ]
         },
         backstrech                : {

@@ -16,6 +16,7 @@ require('zero.clipboard');
 /*Bootstrap*/
 require('bootstrap');
 require('bootstrap.tagsinput');
+require('bootstrap.multiselect');
 
 /*Backbone*/
 require('backbone');

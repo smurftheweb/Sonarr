@@ -68,6 +68,10 @@ var Collection = PageableCollection.extend({
             null,
             null,
             function(model) { return model.get('episodeCount') !== model.get('episodeFileCount'); }
+        ],
+        'anime' : [
+            null,
+            null
         ]
     },
 
