@@ -71,7 +71,8 @@ var Collection = PageableCollection.extend({
         ],
         'anime' : [
             null,
-            null
+            null,
+            function(model) { return model.get('tags') === 'anime'; }
         ]
     },
 

@@ -8,7 +8,8 @@ module.exports = Backbone.Model.extend({
         episodeFileCount : 0,
         episodeCount     : 0,
         isExisting       : false,
-        status           : 0
+        status           : 0,
+        tags             : []
     },
 
     setSeasonMonitored : function(seasonNumber) {
