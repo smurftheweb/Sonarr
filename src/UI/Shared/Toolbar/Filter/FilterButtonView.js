@@ -3,7 +3,7 @@ var Marionette = require('marionette');
 var _ = require('underscore');
 
 module.exports = Marionette.ItemView.extend({
-    template : 'Shared/Toolbar/Sorting/SortingButtonViewTemplate',
+    template : 'Shared/Toolbar/Filter/FilterButtonViewTemplate',
     tagName  : 'li',
 
     ui : {

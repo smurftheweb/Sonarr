@@ -15,6 +15,7 @@ var SeriesStatusCell = require('../../Cells/SeriesStatusCell');
 var FooterView = require('./FooterView');
 var FooterModel = require('./FooterModel');
 var ToolbarLayout = require('../../Shared/Toolbar/ToolbarLayout');
+var TagCollection = require('../../Tags/TagCollection');
 require('../../Mixins/backbone.signalr.mixin');
 
 module.exports = Marionette.Layout.extend({
@@ -130,15 +131,13 @@ module.exports = Marionette.Layout.extend({
         });
 
         this.tagOptions = {
-            type: 'sorting',
-            title: 'Tags',
+            type: 'filter',
             name: 'tags',
             storeState: false,
             viewCollection: this.seriesCollection,
-            items : [ 
-                    { title: 'Anime', name: 'anime' },
-                    { title: 'TV', name: 'tv'}
-                ]
+            items : _.map(TagCollection.models, function(model) {
+                return { title: model.attributes.label, name: model.attributes.id }; 
+            })
         };
 
         this.sortingOptions = {

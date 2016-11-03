@@ -4,6 +4,7 @@ var ButtonModel = require('./ButtonModel');
 var RadioButtonCollectionView = require('./Radio/RadioButtonCollectionView');
 var ButtonCollectionView = require('./Button/ButtonCollectionView');
 var SortingButtonCollectionView = require('./Sorting/SortingButtonCollectionView');
+var FilterButtonCollectionView = require('./Filter/FilterButtonCollectionView');
 var _ = require('underscore');
 
 module.exports = Marionette.Layout.extend({
@@ -78,6 +79,15 @@ module.exports = Marionette.Layout.extend({
             case 'sorting':
             {
                 buttonGroupView = new SortingButtonCollectionView({
+                    collection     : groupCollection,
+                    menu           : buttonGroup,
+                    viewCollection : buttonGroup.viewCollection
+                });
+                break;
+            }
+            case 'filter':
+            {
+                buttonGroupView = new FilterButtonCollectionView({
                     collection     : groupCollection,
                     menu           : buttonGroup,
                     viewCollection : buttonGroup.viewCollection
