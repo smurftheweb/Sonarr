@@ -14,7 +14,7 @@ namespace NzbDrone.Core.Download.Clients.QBittorrent
     public interface IQBittorrentProxy
     {
         int GetVersion(QBittorrentSettings settings);
-        Dictionary<string, Object> GetConfig(QBittorrentSettings settings);
+        QBittorrentPreferences GetConfig(QBittorrentSettings settings);
         List<QBittorrentTorrent> GetTorrents(QBittorrentSettings settings);
 
         void AddTorrentFromUrl(string torrentUrl, QBittorrentSettings settings);
@@ -47,10 +47,10 @@ namespace NzbDrone.Core.Download.Clients.QBittorrent
             return response;
         }
 
-        public Dictionary<string, object> GetConfig(QBittorrentSettings settings)
+        public QBittorrentPreferences GetConfig(QBittorrentSettings settings)
         {
             var request = BuildRequest(settings).Resource("/query/preferences");
-            var response = ProcessRequest<Dictionary<string, object>>(request, settings);
+            var response = ProcessRequest<QBittorrentPreferences>(request, settings);
 
             return response;
         }
@@ -58,7 +58,8 @@ namespace NzbDrone.Core.Download.Clients.QBittorrent
         public List<QBittorrentTorrent> GetTorrents(QBittorrentSettings settings)
         {
             var request = BuildRequest(settings).Resource("/query/torrents")
-                                                .AddQueryParam("label", settings.TvCategory);
+                                                .AddQueryParam("label", settings.TvCategory)
+                                                .AddQueryParam("category", settings.TvCategory);
 
             var response = ProcessRequest<List<QBittorrentTorrent>>(request, settings);
 
@@ -99,7 +100,7 @@ namespace NzbDrone.Core.Download.Clients.QBittorrent
                                                         .AddFormParameter("hashes", hash)
                                                         .AddFormParameter("category", label);
             try
-            { 
+            {
                 ProcessRequest<object>(setCategoryRequest, settings);
             }
             catch(DownloadClientException ex)
