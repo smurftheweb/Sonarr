@@ -11,6 +11,9 @@ module.exports = Marionette.CompositeView.extend({
         console.log("Hello");
         var sel = this.ui.select;
         console.log(sel);
-        sel.multiselect();
+        sel.multiselect({
+            'includeSelectAllOption': true,
+            'selectAllText': 'All Series'
+        });
     }
 });
